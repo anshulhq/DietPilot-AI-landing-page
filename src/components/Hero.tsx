@@ -1,7 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles, Brain, Activity } from "lucide-react";
+import { 
+  ArrowRight, 
+  Sparkles, 
+  Brain, 
+  Activity, 
+  Database, 
+  Cpu, 
+  Layers, 
+  Zap,
+  Server
+} from "lucide-react";
 
 export default function Hero() {
   return (
@@ -23,7 +33,7 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.9] mb-8">
+        <h1 className="text-6xl md:text-9xl font-black tracking-tight leading-[0.9] mb-8">
           YOUR DIET, <br />
           <span className="text-gradient">AUTOPILOTED.</span>
         </h1>
@@ -55,11 +65,11 @@ export default function Hero() {
         </div>
       </motion.div>
 
-      {/* Floating Elements / Abstract UI */}
+      {/* Floating Elements / Architecture Visuals */}
       <motion.div 
         animate={{ y: [0, -20, 0] }}
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-[20%] left-[10%] hidden lg:block"
+        className="absolute top-[20%] left-[5%] hidden xl:block"
       >
         <div className="glass p-4 rounded-2xl border border-white/10 flex items-center gap-4">
           <div className="w-12 h-12 bg-brand-secondary/20 rounded-xl flex items-center justify-center">
@@ -74,16 +84,80 @@ export default function Hero() {
 
       <motion.div 
         animate={{ y: [0, 20, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-        className="absolute bottom-[20%] right-[10%] hidden lg:block"
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        className="absolute top-[15%] right-[5%] hidden xl:block"
+      >
+        <div className="glass p-4 rounded-2xl border border-white/10 flex items-center gap-4">
+          <div className="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center">
+            <Cpu className="text-brand-primary" size={24} />
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Inference</div>
+            <div className="text-sm font-bold">Llama 3.3 @ Groq</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        animate={{ y: [0, -15, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="absolute bottom-[25%] left-[8%] hidden xl:block"
+      >
+        <div className="glass p-4 rounded-2xl border border-white/10 flex items-center gap-4">
+          <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+            <Layers className="text-white" size={24} />
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Database</div>
+            <div className="text-sm font-bold">Dual-DB Architecture</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        animate={{ y: [0, 15, 0] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        className="absolute bottom-[20%] right-[10%] hidden xl:block"
       >
         <div className="glass p-4 rounded-2xl border border-white/10 flex items-center gap-4">
           <div className="w-12 h-12 bg-brand-primary/20 rounded-xl flex items-center justify-center">
             <div className="w-6 h-6 border-2 border-brand-primary border-t-transparent rounded-full animate-spin" />
           </div>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-white/40">Status</div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Nutrition Engine</div>
             <div className="text-sm font-bold">Optimizing Macros</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        animate={{ x: [0, 10, 0] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 2 }}
+        className="absolute top-[40%] right-[2%] hidden xl:block"
+      >
+        <div className="glass p-4 rounded-2xl border border-white/10 flex items-center gap-4">
+          <div className="w-12 h-12 bg-brand-secondary/20 rounded-xl flex items-center justify-center">
+            <Database className="text-brand-secondary" size={24} />
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Storage</div>
+            <div className="text-sm font-bold">10K Recipe Index</div>
+          </div>
+        </div>
+      </motion.div>
+
+      <motion.div 
+        animate={{ x: [0, -10, 0] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2.5 }}
+        className="absolute bottom-[40%] left-[2%] hidden xl:block"
+      >
+        <div className="glass p-4 rounded-2xl border border-white/10 flex items-center gap-4">
+          <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center">
+            <Zap className="text-brand-primary" size={24} />
+          </div>
+          <div>
+            <div className="text-[10px] uppercase tracking-widest text-white/40">Latency</div>
+            <div className="text-sm font-bold">Sub-100ms Retrieval</div>
           </div>
         </div>
       </motion.div>
