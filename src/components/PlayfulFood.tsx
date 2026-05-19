@@ -5,128 +5,185 @@ import gsap from "gsap";
 
 export default function PlayfulFood() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const leftEyeRef = useRef<HTMLDivElement>(null);
-  const rightEyeRef = useRef<HTMLDivElement>(null);
-  const avocadoRef = useRef<HTMLDivElement>(null);
+  const avocadoRef = useRef<SVGSVGElement>(null);
+  
+  // Refs for different layers
+  const skinRef = useRef<SVGPathElement>(null);
+  const fleshRef = useRef<SVGPathElement>(null);
+  const pitRef = useRef<SVGGElement>(null);
+  const faceRef = useRef<SVGGElement>(null);
+  const eyesRef = useRef<SVGGElement>(null);
+  const blushRef = useRef<SVGGElement>(null);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!containerRef.current || !leftEyeRef.current || !rightEyeRef.current) return;
+    let xPosition = 0;
+    let yPosition = 0;
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
-      const { clientX, clientY } = e;
-      
-      // Get centers of the eyes
-      const getEyeCenter = (ref: React.RefObject<HTMLDivElement | null>) => {
-        if (!ref.current) return { x: 0, y: 0 };
-        const rect = ref.current.getBoundingClientRect();
-        return {
-          x: rect.left + rect.width / 2,
-          y: rect.top + rect.height / 2
-        };
-      };
-
-      const leftCenter = getEyeCenter(leftEyeRef);
-      const rightCenter = getEyeCenter(rightEyeRef);
-
-      // Calculate angles
-      const angleLeft = Math.atan2(clientY - leftCenter.y, clientX - leftCenter.x);
-      const angleRight = Math.atan2(clientY - rightCenter.y, clientX - rightCenter.x);
-
-      // Move pupils (max distance 6px)
-      const distance = 6;
-      const lx = Math.cos(angleLeft) * distance;
-      const ly = Math.sin(angleLeft) * distance;
-      const rx = Math.cos(angleRight) * distance;
-      const ry = Math.sin(angleRight) * distance;
-
-      gsap.to(".pupil-l", { x: lx, y: ly, duration: 0.2, ease: "power2.out" });
-      gsap.to(".pupil-r", { x: rx, y: ry, duration: 0.2, ease: "power2.out" });
-
-      // Slight tilt and displacement of the whole avocado
-      if (avocadoRef.current) {
-        const rect = avocadoRef.current.getBoundingClientRect();
-        const ax = rect.left + rect.width / 2;
-        const ay = rect.top + rect.height / 2;
-        
-        // Tilt values
-        const tiltX = (clientX - ax) / 50;
-        const tiltY = (clientY - ay) / 50;
-        
-        // Displacement values (max 20px)
-        const moveX = (clientX - ax) / 30;
-        const moveY = (clientY - ay) / 30;
-        
-        gsap.to(avocadoRef.current, {
-          rotateX: -tiltY,
-          rotateY: tiltX,
-          x: moveX,
-          y: moveY,
-          duration: 0.5,
-          ease: "power2.out"
-        });
-      }
+    const updateWindowSize = () => {
+      width = window.innerWidth;
+      height = window.innerHeight;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    const updateMouseCoords = (e: MouseEvent) => {
+      xPosition = e.clientX;
+      yPosition = e.clientY;
+    };
+
+    const percentage = (partialValue: number, totalValue: number) => {
+      return (100 * partialValue) / totalValue;
+    };
+
+    const animateAvocado = () => {
+      if (!xPosition || !yPosition) return;
+
+      // Range from -50 to 50
+      const x = percentage(xPosition, width) - 50;
+      const y = percentage(yPosition, height) - 50;
+
+      // Different layers move at different intensities to create 3D depth
+      
+      // Face moves the most (foreground)
+      gsap.to(faceRef.current, {
+        x: x / 5,
+        y: y / 5,
+        duration: 0.6,
+        ease: "power2.out"
+      });
+
+      // Eyes have extra movement for "looking" effect
+      gsap.to(eyesRef.current, {
+        x: x / 8,
+        y: y / 8,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+
+      // Pit moves slightly less than face
+      gsap.to(pitRef.current, {
+        x: x / 12,
+        y: y / 12,
+        duration: 0.7,
+        ease: "power2.out"
+      });
+
+      // Flesh is the middle layer
+      gsap.to(fleshRef.current, {
+        x: x / 25,
+        y: y / 25,
+        duration: 0.8,
+        ease: "power2.out"
+      });
+
+      // Skin moves the least or opposite (background)
+      gsap.to(skinRef.current, {
+        x: -x / 40,
+        y: -y / 40,
+        duration: 1,
+        ease: "power2.out"
+      });
+
+      // Tilt and displace the whole SVG
+      gsap.to(avocadoRef.current, {
+        rotateX: -y / 5,
+        rotateY: x / 5,
+        x: x * 1.5, // Added body displacement
+        y: y * 1.5, // Added body displacement
+        duration: 0.5,
+        ease: "power2.out"
+      });
+    };
+
+    // Initial Animation (Pop in)
+    gsap.from(avocadoRef.current, {
+      scale: 0,
+      y: 100,
+      duration: 1.5,
+      ease: "elastic.out(1, 0.5)"
+    });
+
+    window.addEventListener("resize", updateWindowSize);
+    window.addEventListener("mousemove", updateMouseCoords);
+    gsap.ticker.add(animateAvocado);
+
+    return () => {
+      window.removeEventListener("resize", updateWindowSize);
+      window.removeEventListener("mousemove", updateMouseCoords);
+      gsap.ticker.remove(animateAvocado);
+    };
   }, []);
 
   return (
-    <div ref={containerRef} className="py-20 flex flex-col items-center justify-center relative overflow-hidden bg-surface/5">
+    <div ref={containerRef} className="py-32 flex flex-col items-center justify-center relative overflow-hidden bg-surface/5">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-primary/5 to-transparent opacity-50" />
       
-      <div className="text-center mb-12 relative z-10">
-        <h3 className="text-2xl font-black tracking-tight uppercase mb-2">Wait, someone's watching you...</h3>
-        <p className="text-white/40 text-sm font-medium">DietPilot AI is always looking for the best recipes.</p>
+      <div className="text-center mb-16 relative z-10">
+        <h3 className="text-3xl font-black tracking-tight uppercase mb-3">Wait, someone's watching you...</h3>
+        <p className="text-white/40 text-lg font-medium max-w-md mx-auto">
+          Our AI-vocado is keeping an eye on your nutritional goals.
+        </p>
       </div>
 
-      <div 
-        ref={avocadoRef}
-        className="relative w-48 h-64 [perspective:1000px] group cursor-pointer"
-        style={{ transformStyle: "preserve-3d" }}
-      >
-        {/* Avocado Body */}
-        <div className="absolute inset-0 bg-[#4B6F44] rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] border-4 border-[#2D4229] shadow-2xl overflow-hidden">
-          {/* Inner Flesh */}
-          <div className="absolute inset-2 bg-[#C2D96E] rounded-[50%_50%_50%_50%_/_60%_60%_40%_40%] flex flex-col items-center justify-center">
-            {/* The Pit */}
-            <div className="w-20 h-20 bg-[#6F4E37] rounded-full mt-16 border-4 border-[#4E3524] shadow-inner relative">
-               <div className="absolute top-2 left-4 w-4 h-4 bg-white/20 rounded-full blur-sm" />
-            </div>
-          </div>
-        </div>
+      <div className="relative [perspective:1000px]">
+        <svg 
+          ref={avocadoRef}
+          viewBox="0 0 200 280" 
+          className="w-64 h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.5)]"
+          style={{ transformStyle: "preserve-3d" }}
+        >
+          {/* Skin Layer (Back) */}
+          <path 
+            ref={skinRef}
+            d="M100 10 C 150 10, 180 60, 180 140 C 180 220, 150 270, 100 270 C 50 270, 20 220, 20 140 C 20 60, 50 10, 100 10 Z" 
+            fill="#2D4229" 
+            stroke="#1A2818"
+            strokeWidth="2"
+          />
 
-        {/* Eyes Layer */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 flex gap-8 z-20">
-          {/* Left Eye */}
-          <div ref={leftEyeRef} className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-black/10">
-            <div className="pupil-l w-4 h-4 bg-obsidian rounded-full relative">
-                <div className="absolute top-0.5 left-0.5 w-1.5 h-1.5 bg-white rounded-full" />
-            </div>
-          </div>
-          {/* Right Eye */}
-          <div ref={rightEyeRef} className="w-8 h-8 bg-white rounded-full flex items-center justify-center shadow-lg border border-black/10">
-            <div className="pupil-r w-4 h-4 bg-obsidian rounded-full relative">
-                <div className="absolute top-0.5 left-0.5 w-1.5 h-1.5 bg-white rounded-full" />
-            </div>
-          </div>
-        </div>
+          {/* Flesh Layer (Middle) */}
+          <path 
+            ref={fleshRef}
+            d="M100 25 C 140 25, 165 70, 165 140 C 165 210, 140 255, 100 255 C 60 255, 35 210, 35 140 C 35 70, 60 25, 100 25 Z" 
+            fill="#C2D96E" 
+          />
 
-        {/* Blush */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 flex gap-16 z-10 opacity-30">
-          <div className="w-6 h-3 bg-[#E68A8A] rounded-full blur-sm" />
-          <div className="w-6 h-3 bg-[#E68A8A] rounded-full blur-sm" />
-        </div>
+          {/* Pit Layer (Inner Foreground) */}
+          <g ref={pitRef}>
+            <circle cx="100" cy="180" r="45" fill="#6F4E37" />
+            <circle cx="85" cy="165" r="10" fill="white" opacity="0.1" />
+          </g>
 
-        {/* Mouth */}
-        <div className="absolute top-[38%] left-1/2 -translate-x-1/2 w-4 h-2 border-b-2 border-obsidian/40 rounded-full" />
+          {/* Face Layer (Foreground) */}
+          <g ref={faceRef}>
+            {/* Blush */}
+            <g ref={blushRef} opacity="0.4">
+              <ellipse cx="65" cy="115" rx="10" ry="5" fill="#E68A8A" />
+              <ellipse cx="135" cy="115" rx="10" ry="5" fill="#E68A8A" />
+            </g>
+
+            {/* Mouth */}
+            <path d="M90 125 Q 100 135, 110 125" fill="none" stroke="#2D4229" strokeWidth="3" strokeLinecap="round" />
+
+            {/* Eyes */}
+            <g ref={eyesRef}>
+              {/* Left Eye */}
+              <circle cx="75" cy="100" r="10" fill="white" />
+              <circle className="pupil" cx="75" cy="100" r="5" fill="#1A2818" />
+              <circle cx="72" cy="97" r="2" fill="white" />
+              
+              {/* Right Eye */}
+              <circle cx="125" cy="100" r="10" fill="white" />
+              <circle className="pupil" cx="125" cy="100" r="5" fill="#1A2818" />
+              <circle cx="122" cy="97" r="2" fill="white" />
+            </g>
+          </g>
+        </svg>
       </div>
       
-      {/* Decorative dots */}
-      <div className="mt-12 flex gap-2">
-        {[...Array(3)].map((_, i) => (
-          <div key={i} className="w-2 h-2 rounded-full bg-brand-primary/20 animate-pulse" style={{ animationDelay: `${i * 0.2}s` }} />
-        ))}
+      {/* Interaction prompt */}
+      <div className="mt-16 bg-white/5 backdrop-blur-md px-6 py-2 rounded-full border border-white/10 text-xs font-bold tracking-widest text-white/60 uppercase animate-bounce">
+        Move your cursor to play
       </div>
     </div>
   );
