@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Setup from "@/components/Setup";
+import PlayfulFood from "@/components/PlayfulFood";
 import TechStack from "@/components/TechStack";
 import Pipeline from "@/components/Pipeline";
 import Features from "@/components/Features";
@@ -14,6 +15,7 @@ export default function Home() {
     <main className="min-h-screen">
       <Navbar />
       <Hero />
+      <PlayfulFood />
       <Setup />
       <Features />
       <Showcase />
