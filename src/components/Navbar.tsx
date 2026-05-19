@@ -26,7 +26,7 @@ export default function Navbar() {
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-10">
-          {["Features", "Showcase", "How It Works", "Pipeline", "Setup"].map((item) => (
+          {["Setup", "Features", "Showcase", "How It Works", "Pipeline"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}
@@ -59,7 +59,7 @@ export default function Navbar() {
           animate={{ opacity: 1, scale: 1 }}
           className="absolute top-24 left-6 right-6 glass p-8 rounded-3xl md:hidden flex flex-col gap-6"
         >
-          {["Features", "Showcase", "How It Works", "Pipeline", "Setup"].map((item) => (
+          {["Setup", "Features", "Showcase", "How It Works", "Pipeline"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase().replace(/\s+/g, "-")}`}

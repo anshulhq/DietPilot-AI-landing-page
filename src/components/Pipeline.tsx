@@ -14,41 +14,48 @@ import {
   Code
 } from "lucide-react";
 
+import GlowCard from "./GlowCard";
+
 const pipelineSteps = [
   {
     title: "1. User Query & Direct Hit",
     desc: "The system first attempts a direct SQL 'ILIKE' match on the recipe name. If an exact match is found, it's returned instantly in ~2ms.",
     icon: Search,
     color: "text-brand-primary",
-    tag: "SQLite Search"
+    tag: "SQLite Search",
+    glow: "rgba(0, 255, 163, 0.1)"
   },
   {
     title: "2. Semantic Embedding",
     desc: "If no direct match exists, the query is converted into a 384-dimensional vector using the 'all-MiniLM-L6-v2' model locally on the server (~8ms).",
     icon: Cpu,
     color: "text-brand-secondary",
-    tag: "Sentence-Transformers"
+    tag: "Sentence-Transformers",
+    glow: "rgba(0, 102, 255, 0.1)"
   },
   {
     title: "3. Vector Retrieval",
     desc: "The encoded vector is sent to Pinecone to find the Top-5 most similar recipes based on cosine similarity in sub-100ms.",
     icon: Database,
     color: "text-brand-accent",
-    tag: "Pinecone Cloud"
+    tag: "Pinecone Cloud",
+    glow: "rgba(255, 0, 212, 0.1)"
   },
   {
     title: "4. Context Augmentation",
     desc: "Full recipe data (ingredients, steps, macros) is fetched from SQLite and combined with user health goals and chat history.",
     icon: Box,
     color: "text-white",
-    tag: "Data Merging"
+    tag: "Data Merging",
+    glow: "rgba(255, 255, 255, 0.05)"
   },
   {
     title: "5. LLM Generation",
     desc: "The enriched prompt is sent to Llama 3.3 70B via Groq's LPU hardware, generating a grounded, personalized response in ~680ms.",
     icon: MessageSquare,
     color: "text-brand-primary",
-    tag: "Llama 3.3 @ Groq"
+    tag: "Llama 3.3 @ Groq",
+    glow: "rgba(0, 255, 163, 0.1)"
   }
 ];
 
@@ -77,26 +84,32 @@ export default function Pipeline() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1 }}
-            className="glass p-8 rounded-[2.5rem] border border-white/5 relative group flex flex-col h-full"
+            className="h-full"
           >
-            <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${step.color}`}>
-              <step.icon size={28} />
-            </div>
-            
-            <div className="mb-4">
-              <span className="text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-white/5 text-white/60">
-                {step.tag}
-              </span>
-            </div>
-
-            <h3 className="text-xl font-black mb-4 tracking-tight leading-tight">{step.title}</h3>
-            <p className="text-sm text-white/40 leading-relaxed font-medium flex-grow">{step.desc}</p>
-            
-            {i < pipelineSteps.length - 1 && (
-              <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 text-white/10 hidden lg:block">
-                <ArrowRight size={24} />
+            <GlowCard 
+              glowColor={step.glow}
+              className="glass rounded-[2.5rem] border border-white/5 group h-full"
+              innerClassName="p-8 flex flex-col h-full"
+            >
+              <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${step.color}`}>
+                <step.icon size={28} />
               </div>
-            )}
+              
+              <div className="mb-4">
+                <span className="text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1 rounded-full bg-white/5 text-white/60">
+                  {step.tag}
+                </span>
+              </div>
+
+              <h3 className="text-xl font-black mb-4 tracking-tight leading-tight">{step.title}</h3>
+              <p className="text-sm text-white/40 leading-relaxed font-medium flex-grow">{step.desc}</p>
+              
+              {i < pipelineSteps.length - 1 && (
+                <div className="absolute top-1/2 -right-2 transform -translate-y-1/2 text-white/10 hidden lg:block">
+                  <ArrowRight size={24} />
+                </div>
+              )}
+            </GlowCard>
           </motion.div>
         ))}
       </div>

@@ -3,15 +3,17 @@
 import { motion } from "framer-motion";
 import { Cpu, Layers, Database, Shield, Zap, Palette, Boxes, Globe } from "lucide-react";
 
+import GlowCard from "./GlowCard";
+
 const stack = [
-  { name: "Next.js", role: "Frontend", icon: Globe, color: "text-white" },
-  { name: "FastAPI", role: "Backend", icon: Zap, color: "text-brand-secondary" },
-  { name: "Llama 3", role: "LLM via Groq", icon: Cpu, color: "text-brand-primary" },
-  { name: "LangChain", role: "Orchestration", icon: Boxes, color: "text-white" },
-  { name: "ChromaDB", role: "Vector Store", icon: Database, color: "text-brand-secondary" },
-  { name: "SQLite", role: "Database", icon: Layers, color: "text-white" },
-  { name: "Tailwind CSS", role: "Styling", icon: Palette, color: "text-brand-primary" },
-  { name: "NextAuth.js", role: "Auth", icon: Shield, color: "text-white" },
+  { name: "Next.js", role: "Frontend", icon: Globe, color: "text-white", glow: "rgba(255, 255, 255, 0.1)" },
+  { name: "FastAPI", role: "Backend", icon: Zap, color: "text-brand-secondary", glow: "rgba(0, 102, 255, 0.1)" },
+  { name: "Llama 3", role: "LLM via Groq", icon: Cpu, color: "text-brand-primary", glow: "rgba(0, 255, 163, 0.1)" },
+  { name: "LangChain", role: "Orchestration", icon: Boxes, color: "text-white", glow: "rgba(255, 255, 255, 0.1)" },
+  { name: "ChromaDB", role: "Vector Store", icon: Database, color: "text-brand-secondary", glow: "rgba(0, 102, 255, 0.1)" },
+  { name: "SQLite", role: "Database", icon: Layers, color: "text-white", glow: "rgba(255, 255, 255, 0.1)" },
+  { name: "Tailwind CSS", role: "Styling", icon: Palette, color: "text-brand-primary", glow: "rgba(0, 255, 163, 0.1)" },
+  { name: "NextAuth.js", role: "Auth", icon: Shield, color: "text-white", glow: "rgba(255, 255, 255, 0.1)" },
 ];
 
 export default function TechStack() {
@@ -34,13 +36,19 @@ export default function TechStack() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.05 }}
               whileHover={{ y: -8 }}
-              className="glass p-8 rounded-3xl border border-white/5 flex flex-col items-center text-center group"
+              className="h-full"
             >
-              <div className={`w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors ${item.color}`}>
-                <item.icon size={32} />
-              </div>
-              <h3 className="text-xl font-black tracking-tight mb-1">{item.name}</h3>
-              <p className="text-sm text-white/40 font-bold uppercase tracking-widest">{item.role}</p>
+              <GlowCard 
+                glowColor={item.glow}
+                className="glass rounded-3xl border border-white/5 group h-full"
+                innerClassName="p-8 flex flex-col items-center text-center h-full"
+              >
+                <div className={`w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors ${item.color}`}>
+                  <item.icon size={32} />
+                </div>
+                <h3 className="text-xl font-black tracking-tight mb-1">{item.name}</h3>
+                <p className="text-sm text-white/40 font-bold uppercase tracking-widest">{item.role}</p>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

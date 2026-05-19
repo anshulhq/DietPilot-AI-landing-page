@@ -3,27 +3,32 @@
 import { motion } from "framer-motion";
 import { UserPlus, ChefHat, Trophy } from "lucide-react";
 
+import GlowCard from "./GlowCard";
+
 const steps = [
   {
     id: "Step 01",
     title: "Create Your Profile",
     desc: "Tell us your goals, dietary preferences, and activity level. Our AI calibrates a personalized nutrition plan in seconds.",
     icon: UserPlus,
-    color: "bg-brand-primary/20 text-brand-primary"
+    color: "bg-brand-primary/20 text-brand-primary",
+    glow: "rgba(0, 255, 163, 0.1)"
   },
   {
     id: "Step 02",
     title: "Log & Discover Meals",
     desc: "Browse thousands of recipes or chat with our AI assistant to find meals that perfectly match your macros and taste.",
     icon: ChefHat,
-    color: "bg-brand-secondary/20 text-brand-secondary"
+    color: "bg-brand-secondary/20 text-brand-secondary",
+    glow: "rgba(0, 102, 255, 0.1)"
   },
   {
     id: "Step 03",
     title: "Track & Achieve",
     desc: "Watch your daily progress in real-time. Hit your protein goals, stay within calorie limits, and build lasting healthy habits.",
     icon: Trophy,
-    color: "bg-brand-accent/20 text-brand-accent"
+    color: "bg-brand-accent/20 text-brand-accent",
+    glow: "rgba(255, 0, 212, 0.1)"
   }
 ];
 
@@ -56,7 +61,11 @@ export default function HowItWorks() {
               }`}
             >
               <div className="flex-1 flex justify-center">
-                <div className="glass p-12 rounded-[3.5rem] border border-white/10 relative group">
+                <GlowCard 
+                  glowColor={step.glow}
+                  className="glass rounded-[3.5rem] border border-white/10 relative group"
+                  innerClassName="p-12"
+                >
                   <div className={`w-24 h-24 rounded-3xl ${step.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
                     <step.icon size={48} />
                   </div>
@@ -68,7 +77,7 @@ export default function HowItWorks() {
                   <div className="absolute -bottom-4 -right-4 text-[10rem] font-black text-white/[0.02] pointer-events-none uppercase leading-none">
                     0{i+1}
                   </div>
-                </div>
+                </GlowCard>
               </div>
 
               {/* Center Dot */}

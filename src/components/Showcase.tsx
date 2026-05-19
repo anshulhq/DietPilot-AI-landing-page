@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import GlowCard from "./GlowCard";
 
 const screens = [
   {
@@ -52,7 +53,11 @@ export default function Showcase() {
               
               <div className="flex-[1.5] relative group">
                 <div className="absolute -inset-4 bg-gradient-to-tr from-brand-primary/20 to-brand-secondary/20 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-                <div className="relative glass p-2 rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500">
+                <GlowCard 
+                  glowColor="rgba(0, 102, 255, 0.2)"
+                  className="relative glass rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-500"
+                  innerClassName="p-2"
+                >
                   <Image 
                     src={screen.src} 
                     alt={screen.title} 
@@ -60,7 +65,7 @@ export default function Showcase() {
                     height={800} 
                     className="rounded-[1.5rem] w-full h-auto object-cover"
                   />
-                </div>
+                </GlowCard>
               </div>
             </motion.div>
           ))}
