@@ -8,6 +8,10 @@ import Features from "@/components/Features";
 import Showcase from "@/components/Showcase";
 import HowItWorks from "@/components/HowItWorks";
 import CTA from "@/components/CTA";
+import PlayfulStrawberry from "@/components/PlayfulStrawberry";
+import PlayfulBroccoli from "@/components/PlayfulBroccoli";
+import PlayfulOrange from "@/components/PlayfulOrange";
+import PlayfulCarrot from "@/components/PlayfulCarrot";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -18,11 +22,15 @@ export default function Home() {
       <PlayfulFood />
       <Setup />
       <Features />
+      <PlayfulStrawberry />
       <Showcase />
+      <PlayfulOrange />
       <HowItWorks />
       <Pipeline />
+      <PlayfulBroccoli />
       <TechStack />
       <CTA />
+      <PlayfulCarrot />
       <Footer />
       
       {/* Decorative background elements */}
