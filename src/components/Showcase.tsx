@@ -24,10 +24,10 @@ const screens = [
 
 export default function Showcase() {
   return (
-    <section id="showcase" className="py-32 bg-surface/30 border-y border-white/5">
+    <section id="showcase" className="py-32 bg-surface/30 border-y border-white/5 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-24">
-          <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-8">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter mb-8">
             THE <span className="text-brand-secondary">INTERFACE.</span>
           </h2>
           <p className="text-xl text-white/40 max-w-2xl mx-auto">
@@ -47,7 +47,7 @@ export default function Showcase() {
             >
               <div className="flex-1 space-y-6">
                 <div className="text-brand-secondary font-black tracking-[0.3em] uppercase text-sm">Step 0{i+1}</div>
-                <h3 className="text-4xl md:text-6xl font-black tracking-tight">{screen.title}</h3>
+                <h3 className="text-2xl sm:text-4xl md:text-6xl font-black tracking-tight">{screen.title}</h3>
                 <p className="text-xl text-white/50 leading-relaxed">{screen.desc}</p>
               </div>
               

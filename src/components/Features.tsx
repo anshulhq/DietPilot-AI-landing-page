@@ -32,7 +32,7 @@ export default function Features() {
   return (
     <section id="features" className="py-32 px-6 max-w-7xl mx-auto">
       <div className="text-center mb-20">
-        <h2 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter mb-6 uppercase">
           EVERYTHING YOU <span className="text-white/20">NEED.</span>
         </h2>
         <p className="text-xl text-white/50 font-medium max-w-2xl mx-auto">
@@ -52,8 +52,8 @@ export default function Features() {
           >
             <GlowCard 
               glowColor={f.glow}
-              className="glass rounded-[3.5rem] border border-white/10 hover:border-brand-primary/30 transition-all group relative overflow-hidden h-full"
-              innerClassName="p-12 flex flex-col h-full"
+              className="glass rounded-3xl sm:rounded-[3.5rem] border border-white/10 hover:border-brand-primary/30 transition-all group relative overflow-hidden h-full"
+              innerClassName="p-6 sm:p-12 flex flex-col h-full"
             >
               <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                 <f.icon size={120} />

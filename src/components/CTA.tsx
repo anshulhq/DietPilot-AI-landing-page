@@ -6,7 +6,7 @@ import { ArrowRight, Play, Sparkles } from "lucide-react";
 export default function CTA() {
   return (
     <section id="cta" className="py-32 px-6 max-w-7xl mx-auto">
-      <div className="relative glass p-12 md:p-24 rounded-[4rem] border border-white/10 overflow-hidden group">
+      <div className="relative glass p-6 sm:p-12 md:p-24 rounded-[2rem] sm:rounded-[4rem] border border-white/10 overflow-hidden group">
         {/* Animated background background */}
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <div className="absolute -top-24 -right-24 w-[500px] h-[500px] bg-brand-primary/10 blur-[120px] rounded-full group-hover:bg-brand-primary/20 transition-colors duration-700" />
@@ -26,7 +26,7 @@ export default function CTA() {
             </span>
           </motion.div>
 
-          <h2 className="text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-8 uppercase">
+          <h2 className="text-3xl sm:text-4xl md:text-7xl font-black tracking-tighter leading-[0.9] mb-8 uppercase">
             Ready to Take Control <br />
             <span className="text-gradient">of Your Nutrition?</span>
           </h2>

@@ -21,7 +21,7 @@ export default function TechStack() {
     <section id="tech-stack" className="py-32 bg-surface/20 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-baseline justify-between mb-20 gap-4">
-          <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase">
+          <h2 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter uppercase">
             TECH <span className="text-white/20">STACK.</span>
           </h2>
           <p className="text-xl text-white/40 font-medium">The engine behind the intelligence.</p>
@@ -41,7 +41,7 @@ export default function TechStack() {
               <GlowCard 
                 glowColor={item.glow}
                 className="glass rounded-3xl border border-white/5 group h-full"
-                innerClassName="p-8 flex flex-col items-center text-center h-full"
+                innerClassName="p-4 sm:p-8 flex flex-col items-center text-center h-full"
               >
                 <div className={`w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:bg-white/10 transition-colors ${item.color}`}>
                   <item.icon size={32} />

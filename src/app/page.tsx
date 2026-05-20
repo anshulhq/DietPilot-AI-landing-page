@@ -34,7 +34,7 @@ export default function Home() {
       <Footer />
       
       {/* Decorative background elements */}
-      <div className="fixed inset-0 pointer-events-none -z-10">
+      <div className="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-primary/5 blur-[150px] rounded-full" />
         <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-brand-secondary/5 blur-[150px] rounded-full" />
       </div>

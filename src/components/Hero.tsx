@@ -24,7 +24,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, ease: "circOut" }}
-        className="relative z-10 text-center max-w-5xl"
+        className="relative z-10 text-center max-w-5xl w-full px-4"
       >
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 mb-8">
           <Sparkles className="text-brand-primary" size={16} />
@@ -33,7 +33,7 @@ export default function Hero() {
           </span>
         </div>
 
-        <h1 className="text-6xl md:text-9xl font-black tracking-tight leading-[0.9] mb-8">
+        <h1 className="text-[9vw] sm:text-6xl md:text-9xl font-black tracking-tight leading-[0.9] mb-8">
           YOUR DIET, <br />
           <span className="text-gradient">AUTOPILOTED.</span>
         </h1>

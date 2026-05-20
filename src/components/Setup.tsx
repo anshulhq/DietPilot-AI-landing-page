@@ -10,7 +10,7 @@ export default function Setup() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-brand-primary to-transparent" />
       
       <div className="text-center mb-20">
-        <h2 className="text-4xl md:text-6xl font-black tracking-tighter mb-4 uppercase">
+        <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tighter mb-4 uppercase">
           SET UP <span className="text-brand-primary">LOCALLY.</span>
         </h2>
         <p className="text-white/40 font-medium">Get DietPilot AI running on your machine in minutes.</p>
@@ -26,17 +26,17 @@ export default function Setup() {
         >
           <GlowCard 
             glowColor="rgba(0, 255, 163, 0.1)"
-            className="glass rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
-            innerClassName="p-8 flex flex-col justify-between h-full"
+            className="glass rounded-3xl sm:rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
+            innerClassName="p-6 sm:p-8 flex flex-col justify-between h-full"
           >
             <div className="absolute top-4 right-8 text-7xl font-black text-white/5 uppercase">01</div>
             <div>
               <Terminal className="text-brand-primary mb-6" size={32} />
               <h3 className="text-2xl font-black mb-4 tracking-tight uppercase">Clone the Repository</h3>
             </div>
-            <div className="bg-obsidian/50 p-6 rounded-2xl font-mono text-sm border border-white/5 space-y-2 mt-4">
-              <div className="text-brand-secondary">git clone https://github.com/anshulhq/DietPilot-AI.git</div>
-              <div className="text-white/60">cd DietPilot-AI</div>
+            <div className="bg-obsidian/50 p-6 rounded-2xl font-mono text-sm border border-white/5 space-y-2 mt-4 overflow-x-auto">
+              <div className="text-brand-secondary whitespace-nowrap">git clone https://github.com/anshulhq/DietPilot-AI.git</div>
+              <div className="text-white/60 whitespace-nowrap">cd DietPilot-AI</div>
             </div>
           </GlowCard>
         </motion.div>
@@ -51,8 +51,8 @@ export default function Setup() {
         >
           <GlowCard 
             glowColor="rgba(0, 102, 255, 0.1)"
-            className="glass rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
-            innerClassName="p-8 flex flex-col justify-between h-full"
+            className="glass rounded-3xl sm:rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
+            innerClassName="p-6 sm:p-8 flex flex-col justify-between h-full"
           >
             <div className="absolute top-4 right-8 text-7xl font-black text-white/5 uppercase">02</div>
             <div>
@@ -85,8 +85,8 @@ export default function Setup() {
         >
           <GlowCard 
             glowColor="rgba(255, 0, 212, 0.1)"
-            className="glass rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
-            innerClassName="p-8 flex flex-col h-full"
+            className="glass rounded-3xl sm:rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
+            innerClassName="p-6 sm:p-8 flex flex-col h-full"
           >
             <div className="absolute top-4 right-8 text-7xl font-black text-white/5 uppercase">03</div>
             <div>
@@ -95,16 +95,16 @@ export default function Setup() {
             </div>
             <div className="bg-obsidian/50 p-6 rounded-2xl font-mono text-xs border border-white/5 space-y-2 mt-4 flex-grow overflow-x-auto">
               <div className="text-white/40"># Environment setup</div>
-              <div className="text-brand-secondary">cd backend && python3 -m venv venv</div>
-              <div className="text-brand-secondary">source venv/bin/activate</div>
-              <div className="text-brand-secondary">pip install -r requirements.txt</div>
+              <div className="text-brand-secondary whitespace-nowrap">cd backend && python3 -m venv venv</div>
+              <div className="text-brand-secondary whitespace-nowrap">source venv/bin/activate</div>
+              <div className="text-brand-secondary whitespace-nowrap">pip install -r requirements.txt</div>
               <div className="text-white/40 pt-4"># Configure secrets in .env</div>
-              <div className="text-brand-accent">GROQ_API_KEY=your_key</div>
-              <div className="text-brand-accent">HF_API_KEY=your_key</div>
-              <div className="text-brand-accent">DATABASE_URL=sqlite:///nutriguide.db</div>
+              <div className="text-brand-accent whitespace-nowrap">GROQ_API_KEY=your_key</div>
+              <div className="text-brand-accent whitespace-nowrap">HF_API_KEY=your_key</div>
+              <div className="text-brand-accent whitespace-nowrap">DATABASE_URL=sqlite:///nutriguide.db</div>
               <div className="text-white/40 pt-4"># Load & Launch</div>
-              <div className="text-brand-secondary">python create_db.py && python load_data.py</div>
-              <div className="text-brand-secondary">uvicorn app.main:app --reload</div>
+              <div className="text-brand-secondary whitespace-nowrap">python create_db.py && python load_data.py</div>
+              <div className="text-brand-secondary whitespace-nowrap">uvicorn app.main:app --reload</div>
             </div>
           </GlowCard>
         </motion.div>
@@ -119,11 +119,11 @@ export default function Setup() {
         >
           <GlowCard 
             glowColor="rgba(255, 255, 255, 0.1)"
-            className="glass rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
-            innerClassName="p-8 flex flex-col justify-between h-full"
+            className="glass rounded-3xl sm:rounded-[2.5rem] border border-white/10 relative overflow-hidden group h-full"
+            innerClassName="p-6 sm:p-8 flex flex-col justify-between h-full"
           >
             <div className="absolute top-4 right-8 text-7xl font-black text-white/5 uppercase">04</div>
-            <div className="flex flex-col md:flex-row md:items-center gap-12 flex-grow">
+            <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 flex-grow">
               <div className="flex-shrink-0">
                 <Layout className="text-brand-primary mb-6" size={32} />
                 <h3 className="text-2xl font-black mb-2 tracking-tight uppercase">Frontend Setup</h3>
@@ -132,9 +132,9 @@ export default function Setup() {
                   Live at localhost:3000
                 </div>
               </div>
-              <div className="flex-grow bg-obsidian/50 p-6 rounded-2xl font-mono text-sm border border-white/5 space-y-3">
-                <div className="text-brand-secondary">cd frontend && npm install</div>
-                <div className="text-brand-secondary">npm run dev</div>
+              <div className="flex-grow bg-obsidian/50 p-6 rounded-2xl font-mono text-sm border border-white/5 space-y-3 overflow-x-auto">
+                <div className="text-brand-secondary whitespace-nowrap">cd frontend && npm install</div>
+                <div className="text-brand-secondary whitespace-nowrap">npm run dev</div>
               </div>
             </div>
           </GlowCard>

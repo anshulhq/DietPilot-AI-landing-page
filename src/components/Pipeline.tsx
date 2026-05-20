@@ -65,7 +65,7 @@ export default function Pipeline() {
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-primary/10 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="text-center mb-24">
-        <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6">
           THE <span className="text-brand-secondary">PIPELINE.</span>
         </h2>
         <p className="text-xl text-white/40 font-medium max-w-3xl mx-auto">
@@ -88,8 +88,8 @@ export default function Pipeline() {
           >
             <GlowCard 
               glowColor={step.glow}
-              className="glass rounded-[2.5rem] border border-white/5 group h-full"
-              innerClassName="p-8 flex flex-col h-full"
+              className="glass rounded-3xl sm:rounded-[2.5rem] border border-white/5 group h-full"
+              innerClassName="p-6 sm:p-8 flex flex-col h-full"
             >
               <div className={`w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform ${step.color}`}>
                 <step.icon size={28} />
@@ -120,7 +120,7 @@ export default function Pipeline() {
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="glass p-10 rounded-[3rem] border border-white/5 flex items-start gap-8"
+          className="glass p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] border border-white/5 flex flex-col sm:flex-row items-start gap-6 sm:gap-8"
         >
           <div className="w-16 h-16 rounded-2xl bg-brand-primary/20 flex items-center justify-center flex-shrink-0">
             <Server className="text-brand-primary" size={32} />
@@ -137,7 +137,7 @@ export default function Pipeline() {
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="glass p-10 rounded-[3rem] border border-white/5 flex items-start gap-8"
+          className="glass p-6 sm:p-10 rounded-[2rem] sm:rounded-[3rem] border border-white/5 flex flex-col sm:flex-row items-start gap-6 sm:gap-8"
         >
           <div className="w-16 h-16 rounded-2xl bg-brand-secondary/20 flex items-center justify-center flex-shrink-0">
             <Activity className="text-brand-secondary" size={32} />

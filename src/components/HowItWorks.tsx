@@ -36,7 +36,7 @@ export default function HowItWorks() {
   return (
     <section id="how-it-works" className="py-32 px-6 max-w-7xl mx-auto relative overflow-hidden">
       <div className="text-center mb-32">
-        <h2 className="text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6">
+        <h2 className="text-4xl sm:text-5xl md:text-8xl font-black tracking-tighter uppercase mb-6">
           HOW IT <span className="text-white/20">WORKS.</span>
         </h2>
         <p className="text-xl text-white/40 font-medium max-w-2xl mx-auto">
@@ -63,8 +63,8 @@ export default function HowItWorks() {
               <div className="flex-1 flex justify-center">
                 <GlowCard 
                   glowColor={step.glow}
-                  className="glass rounded-[3.5rem] border border-white/10 relative group"
-                  innerClassName="p-12"
+                  className="glass rounded-3xl sm:rounded-[3.5rem] border border-white/10 relative group"
+                  innerClassName="p-6 sm:p-12"
                 >
                   <div className={`w-24 h-24 rounded-3xl ${step.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500`}>
                     <step.icon size={48} />
