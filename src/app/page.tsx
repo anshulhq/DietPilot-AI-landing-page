@@ -12,6 +12,7 @@ import PlayfulStrawberry from "@/components/PlayfulStrawberry";
 import PlayfulBroccoli from "@/components/PlayfulBroccoli";
 import PlayfulOrange from "@/components/PlayfulOrange";
 import PlayfulCarrot from "@/components/PlayfulCarrot";
+import AvatarCharacter from "@/components/AvatarCharacter";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
       <TechStack />
       <CTA />
       <PlayfulCarrot />
+      <AvatarCharacter />
       <Footer />
       
       {/* Decorative background elements */}
