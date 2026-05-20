@@ -30,8 +30,8 @@ export default function Home() {
       <Pipeline />
       <PlayfulBroccoli />
       <TechStack />
-      <CTA />
       <PlayfulCarrot />
+      <CTA />
       <AvatarCharacter />
       <Footer />
       
